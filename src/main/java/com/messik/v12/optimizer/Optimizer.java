@@ -82,6 +82,7 @@ public class Optimizer {
         Simulator simulator = simulatorBuilder.apply(s);
         if (Arrays.stream(data).noneMatch(simulator::next)) {
             s.setScore(simulator.getEquity());
+            s.setTrades(simulator.getTrades());
             System.out.print(simulator.getEquity() + "\r");
             return true;
         } else {

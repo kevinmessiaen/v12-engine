@@ -14,6 +14,7 @@ public class FakeWallet implements Comparable<FakeWallet> {
     public final Map<String,  Predicate<CandlestickWrapper>> tp = new HashMap<>();
     public final Map<String,  Predicate<CandlestickWrapper>> sl = new HashMap<>();
     private double equity;
+    private int trades;
     private double borrowed;
     private Double peak = null;
     private Double trough = null;
@@ -77,6 +78,7 @@ public class FakeWallet implements Comparable<FakeWallet> {
     }
 
     public void buy(FakeAsset fiat, FakeAsset asset, double borrow, double amount, double price) {
+        trades ++;
         fiat.borrow(borrow);
         borrowed += borrow;
         double sold = fiat.sell(fiat.getAvailable());
@@ -84,11 +86,13 @@ public class FakeWallet implements Comparable<FakeWallet> {
     }
 
     public void sell(FakeAsset fiat, FakeAsset asset, double amount, double price) {
+        trades ++;
         double sold = asset.sell(amount) * price;
         fiat.add(sold);
     }
 
     public void sell(FakeAsset fiat, FakeAsset asset, double borrow, double amount, double price) {
+        trades ++;
         asset.borrow(borrow / price);
         borrowed += borrow;
         double sold = asset.sell(asset.getAvailable());
@@ -135,5 +139,9 @@ public class FakeWallet implements Comparable<FakeWallet> {
     public void resetTpSl(String asset) {
         sl.remove(asset);
         tp.remove(asset);
+    }
+
+    public int getTrades() {
+        return trades;
     }
 }

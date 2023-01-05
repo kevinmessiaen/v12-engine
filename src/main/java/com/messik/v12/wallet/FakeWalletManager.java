@@ -38,7 +38,7 @@ public class FakeWalletManager {
 
         FakeAsset asset = wallet.get(candlestick.getAsset());
         FakeAsset fiat = wallet.get(candlestick.getFiat());
-        if (tp != null) {
+        if (tp != null && Action.NONE.equals(action)) {
             wallet.tp(candlestick.getAsset(), (candlestickWrapper -> {
                 if (asset.getAvailable() > 0) {
                     if (candlestick.getHigh() >= tp && candlestick.getLow() <= tp) {
@@ -55,7 +55,7 @@ public class FakeWalletManager {
                 return false;
             }));
         }
-        if (sl != null) {
+        if (sl != null && Action.NONE.equals(action)) {
             wallet.sl(candlestick.getAsset(), (candlestickWrapper -> {
                 if (asset.getAvailable() > 0) {
                     if (candlestick.getHigh() >= sl && candlestick.getLow() <= sl) {

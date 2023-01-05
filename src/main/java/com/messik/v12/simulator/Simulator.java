@@ -38,4 +38,8 @@ public class Simulator {
     public double getEquity() {
         return wallet.getEquity();
     }
+
+    public int getTrades() {
+        return wallet.getTrades();
+    }
 }

@@ -66,7 +66,7 @@ public class AverageDirectionalIndexMasaNakamura implements DependencyProcessor 
         var DX = Math.abs(DIP - DIM) / (DIP + DIM) * 100;
 
         if (dxs.isEmpty()) {
-            for (int i = 0; i < data.size(); i ++) {
+            for (int i = 0; i < period; i ++) {
                 dxs.add(DX);
             }
         }

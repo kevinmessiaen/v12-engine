@@ -13,6 +13,8 @@ public class BotConfig implements Comparable<BotConfig> {
     private RootProcessor[] processor;
     @EqualsAndHashCode.Exclude
     private double score;
+    @EqualsAndHashCode.Exclude
+    private int trades;
 
     @Override
     public int compareTo(BotConfig o) {
